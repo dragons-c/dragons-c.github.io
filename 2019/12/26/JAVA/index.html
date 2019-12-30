@@ -10,17 +10,17 @@
   
   
   
-  <meta name="description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反空：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架">
+  <meta name="description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。&amp;emsp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JAVA框架">
 <meta property="og:url" content="http://dragons-c.top/2019/12/26/JAVA/index.html">
 <meta property="og:site_name" content="又是不想努力的一天">
-<meta property="og:description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反空：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架">
+<meta property="og:description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。&amp;emsp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-30T01:51:56.198Z">
+<meta property="og:updated_time" content="2019-12-30T12:45:42.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA框架">
-<meta name="twitter:description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反空：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架">
+<meta name="twitter:description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。&amp;emsp;">
   
     <link rel="alternate" href="/dragons-c.github.io/atom.xml" title="又是不想努力的一天" type="application/atom+xml">
   
@@ -86,8 +86,15 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a><em>Spring</em></h1><h2 id="一、IOC（控制反转）"><a href="#一、IOC（控制反转）" class="headerlink" title="一、IOC（控制反转）"></a>一、IOC（控制反转）</h2><p>&emsp;&emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。<br>&emsp;&emsp;正控：若要使用这个对象，需要自己去负责创建。<br>&emsp;&emsp;反空：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架    </p>
-
+        <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a><em>Spring</em></h1><h2 id="一、IOC（控制反转）"><a href="#一、IOC（控制反转）" class="headerlink" title="一、IOC（控制反转）"></a>一、IOC（控制反转）</h2><p>&emsp;&emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。<br>&emsp;&emsp;正控：若要使用这个对象，需要自己去负责创建。<br>&emsp;&emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。<br>&emsp;&emsp;代码：pom依赖:   </p>
+<pre><code>&lt;dependency&gt;  
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;  
+  &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;  
+  &lt;version&gt;5.2.0.RELEASE&lt;/version&gt;  
+&lt;/dependency&gt;
+</code></pre><p>&emsp;&emsp;aplicationContext:      </p>
+<pre><code>&lt;context:component-scan base-package=&quot;com.pojo&quot;/&gt;//包扫描
+</code></pre>
       
     </div>
     
