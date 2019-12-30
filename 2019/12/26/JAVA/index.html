@@ -10,17 +10,17 @@
   
   
   
-  <meta name="description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。&amp;emsp;">
+  <meta name="description" content="Spring 一、IOC（控制反转）   控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。   正控：若要使用这个对象，需要自己去负责创建。   反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。   代码：pom依赖: &amp;lt;dependency&amp;gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JAVA框架">
 <meta property="og:url" content="http://dragons-c.top/2019/12/26/JAVA/index.html">
 <meta property="og:site_name" content="又是不想努力的一天">
-<meta property="og:description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。&amp;emsp;">
+<meta property="og:description" content="Spring 一、IOC（控制反转）   控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。   正控：若要使用这个对象，需要自己去负责创建。   反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。   代码：pom依赖: &amp;lt;dependency&amp;gt;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-30T12:45:42.634Z">
+<meta property="og:updated_time" content="2019-12-30T12:58:39.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA框架">
-<meta name="twitter:description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。&amp;emsp;">
+<meta name="twitter:description" content="Spring 一、IOC（控制反转）   控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。   正控：若要使用这个对象，需要自己去负责创建。   反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。   代码：pom依赖: &amp;lt;dependency&amp;gt;">
   
     <link rel="alternate" href="/dragons-c.github.io/atom.xml" title="又是不想努力的一天" type="application/atom+xml">
   
@@ -86,15 +86,32 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a><em>Spring</em></h1><h2 id="一、IOC（控制反转）"><a href="#一、IOC（控制反转）" class="headerlink" title="一、IOC（控制反转）"></a>一、IOC（控制反转）</h2><p>&emsp;&emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。<br>&emsp;&emsp;正控：若要使用这个对象，需要自己去负责创建。<br>&emsp;&emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。<br>&emsp;&emsp;代码：pom依赖:   </p>
+        <h1><em>Spring</em></h1>
+<h2>一、IOC（控制反转）</h2>
+<p>  控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。<br>
+  正控：若要使用这个对象，需要自己去负责创建。<br>
+  反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。<br>
+  代码：pom依赖:</p>
 <pre><code>&lt;dependency&gt;  
   &lt;groupId&gt;org.springframework&lt;/groupId&gt;  
   &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;  
   &lt;version&gt;5.2.0.RELEASE&lt;/version&gt;  
 &lt;/dependency&gt;
-</code></pre><p>&emsp;&emsp;aplicationContext:      </p>
-<pre><code>&lt;context:component-scan base-package=&quot;com.pojo&quot;/&gt;//包扫描
 </code></pre>
+<p>  aplicationContext:</p>
+<pre><code>    &lt;context:component-scan base-package=&quot;com.pojo&quot;/&gt;//包扫描    
+</code></pre>
+<p>  @Service：表示声明该类为一个bean，只有注册为bean后，才可以在其它类下使用@Autowired将本类作为成员变量注入。<br>
+  @Autowired：顾名思义，就是自动装配，其作用是为了消除代码Java代码里面的getter/setter与bean属性中的property。当Spring发现@Autowired注解时，将自动在代码上下文中找到和其匹配（默认是类型匹配）的Bean，并自动注入到相应的地方去。@Qualifier注解括号里面的应当是接口实现类的类名。<br>
+  @Resource的装配顺序：<br>
+  1、@Resource后面没有任何内容，默认通过name属性去匹配bean，找不到再按type去匹配。<br>
+  2、指定了name或者type则根据指定的类型去匹配bean。<br>
+  3、指定了name和type则根据指定的name和type去匹配bean，任何一个不匹配都将报错。<br>
+然后，区分一下@Autowired和@Resource两个注解的区别：<br>
+  1、@Autowired默认按照byType方式进行bean匹配，@Resource默认按照byName方式进行bean匹配。<br>
+  2、@Autowired是Spring的注解，@Resource是J2EE的注解，这个看一下导入注解的时候这两个注解的包名就一清二楚了。<br>
+  Spring属于第三方的，J2EE是Java自己的东西，因此，建议使用@Resource注解，以减少代码和Spring之间的耦合。</p>
+
       
     </div>
     
