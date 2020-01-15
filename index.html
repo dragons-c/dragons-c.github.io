@@ -83,31 +83,23 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <h1><em>Spring</em></h1>
-<h2>一、IOC（控制反转）</h2>
-<p>  控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。<br>
-  正控：若要使用这个对象，需要自己去负责创建。<br>
-  反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。<br>
-  代码：pom依赖:</p>
+        <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a><em>Spring</em></h1><h2 id="一、IOC（控制反转）"><a href="#一、IOC（控制反转）" class="headerlink" title="一、IOC（控制反转）"></a>一、IOC（控制反转）</h2><p>&emsp;&emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。<br>&emsp;&emsp;正控：若要使用这个对象，需要自己去负责创建。<br>&emsp;&emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。<br>&emsp;&emsp;代码：pom依赖:   </p>
 <pre><code>&lt;dependency&gt;  
   &lt;groupId&gt;org.springframework&lt;/groupId&gt;  
   &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;  
   &lt;version&gt;5.2.0.RELEASE&lt;/version&gt;  
 &lt;/dependency&gt;
-</code></pre>
-<p>  aplicationContext:</p>
-<pre><code>    &lt;context:component-scan base-package=&quot;com.pojo&quot;/&gt;//包扫描    
-</code></pre>
-<p>  @Service：表示声明该类为一个bean，只有注册为bean后，才可以在其它类下使用@Autowired将本类作为成员变量注入。<br>
-  @Autowired：顾名思义，就是自动装配，其作用是为了消除代码Java代码里面的getter/setter与bean属性中的property。当Spring发现@Autowired注解时，将自动在代码上下文中找到和其匹配（默认是类型匹配）的Bean，并自动注入到相应的地方去。@Qualifier注解括号里面的应当是接口实现类的类名。<br>
-  @Resource的装配顺序：<br>
-  1、@Resource后面没有任何内容，默认通过name属性去匹配bean，找不到再按type去匹配。<br>
-  2、指定了name或者type则根据指定的类型去匹配bean。<br>
-  3、指定了name和type则根据指定的name和type去匹配bean，任何一个不匹配都将报错。<br>
-然后，区分一下@Autowired和@Resource两个注解的区别：<br>
-  1、@Autowired默认按照byType方式进行bean匹配，@Resource默认按照byName方式进行bean匹配。<br>
-  2、@Autowired是Spring的注解，@Resource是J2EE的注解，这个看一下导入注解的时候这两个注解的包名就一清二楚了。<br>
-  Spring属于第三方的，J2EE是Java自己的东西，因此，建议使用@Resource注解，以减少代码和Spring之间的耦合。</p>
+</code></pre><p>&emsp;&emsp;aplicationContext:      </p>
+<pre><code>&lt;context:component-scan base-package=&quot;com.pojo&quot;/&gt;//包扫描    
+</code></pre><p>&emsp;&emsp;<strong>@Service</strong>：表示声明该类为一个bean，只有注册为bean后，才可以在其它类下使用@Autowired将本类作为成员变量注入。<br>&emsp;&emsp;<strong>@Autowired</strong>：顾名思义，就是自动装配，其作用是为了消除代码Java代码里面的getter/setter与bean属性中的property。当Spring发现@Autowired注解时，将自动在代码上下文中找到和其匹配（默认是类型匹配）的Bean，并自动注入到相应的地方去。@Qualifier注解括号里面的应当是接口实现类的类名。<br>&emsp;&emsp; <strong>@Resource的装配顺序：</strong><br>&emsp;&emsp;1、@Resource后面没有任何内容，默认通过name属性去匹配bean，找不到再按type去匹配。<br>&emsp;&emsp;2、指定了name或者type则根据指定的类型去匹配bean。<br>&emsp;&emsp;3、指定了name和type则根据指定的name和type去匹配bean，任何一个不匹配都将报错。<br>然后，区分一下@Autowired和@Resource两个注解的区别：<br>&emsp;&emsp;1、@Autowired默认按照byType方式进行bean匹配，@Resource默认按照byName方式进行bean匹配。<br>&emsp;&emsp;2、@Autowired是Spring的注解，@Resource是J2EE的注解，这个看一下导入注解的时候这两个注解的包名就一清二楚了。<br>&emsp;&emsp;Spring属于第三方的，J2EE是Java自己的东西，因此，建议使用@Resource注解，以减少代码和Spring之间的耦合。<br>&emsp;&emsp; <strong><a href="context:annotation-config" target="_blank" rel="noopener">context:annotation-config</a></strong>是用于激活那些已经在spring容器里注册过的bean上面的注解，也就是显示的向Spring注册。比如我们要使用@Autowired注解，那么就必须事先在 Spring 容器中声明，一般来说，像@ Resource 、@ PostConstruct、@Antowired这些注解在自动注入还是比较常用，所以如果总是需要按照传统的方式一条一条配置显得有些繁琐和没有必要，于是spring给我们提供<a href="context:annotation-config/" target="_blank" rel="noopener">context:annotation-config/</a>的简化配置方式，自动帮你完成声明。<br>&emsp;&emsp;   假如我们要使用如@Component、@Controller、@Service等这些注解，使用能否激活这些注解呢?<br> &emsp;&emsp; 答案：单纯使用&lt; context:annotation-config/&gt;对上面这些注解无效，不能激活！<br>&emsp;&emsp;Spring 给我提供了 <strong>context:component-scan</strong> 配置，如下<br> <code>&lt;context:component-scan base-package=&quot;xx.xx&quot;/&gt;</code><br>&emsp;&emsp;该配置项其实也包含了自动注入上述 四个processor 的功能，因此当使用 &lt; context:component-scan/&gt; 后，就可以将 &lt; context:annotation-config/&gt; 移除了。<br>&emsp;&emsp;（1）&lt; context:annotation-config /&gt;：仅能够在已经在已经注册过的bean上面起作用。对于没有在spring容器中注册的bean，它并不能执行任何操作。<br>&emsp;&emsp;（2）&lt; context:component-scan base-package=”XX.XX”/&gt; ：除了具有上面的功能之外，还具有自动将带有@component,@service,@Repository等注解的对象注册到spring容器中的功能。 </p>
+<h2 id="二、AOP（面向切面）"><a href="#二、AOP（面向切面）" class="headerlink" title="二、AOP（面向切面）"></a>二、AOP（面向切面）</h2><p><code>&lt;aop:config&gt;  
+        &lt;aop:pointcut id=&quot;loggerCutpoint&quot;
+            expression=
+            &quot;execution(* com.how2java.service.ProductService.*(..)) &quot;/&gt;             
+        &lt;aop:aspect id=&quot;logAspect&quot; ref=&quot;loggerAspect&quot;&gt;
+            &lt;aop:after pointcut-ref=&quot;loggerCutpoint&quot; method=&quot;log&quot;/&gt;
+        &lt;/aop:aspect&gt;  
+ &lt;/aop:config&gt;</code></p>
 
       
     </div>
@@ -143,49 +135,10 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <h1>Linux学习笔记</h1>
-<hr>
-<h2>一、硬件部分</h2>
-<p>(1)cpu<br>
-   cpu内部含有指令集，不同的指令集会导致cpu工作效率的高低。cpu性能的比较还有cpu的频率(频率就是cpu每秒钟可以进行的工作次数)，所以频率高表示这块cpu单位时间内可以做更多的事情。另外，不同cpu型号大多具有不同的针脚，能够搭配的主板芯片组也不相同，所以将主机进行升级时，不能只考虑cpu,还需留意主板支持的型号。<br>
-(2)内存<br>
-  内存需要注意带宽(频率×位宽)和频率的型号，还需要考虑容量。<br>
-(3)显卡<br>
-  显卡又称为VGA，对于图形影像的显示扮演着相当关键的角色。一般对于图形影像的显示重点在于分辨率和颜色深度，因为每个图像显示的颜色会占用内存，因此显卡上面会有集成内存并被称为显存，这个显存容量将会影响到你的屏幕分辨率和颜色深度。<br>
-(4)硬盘<br>
-  现在硬盘大多是SATA接口(SATA是Serial ATA的缩写，即串行ATA。它是一种电脑总线，主要功能是用作主板和大量存储设备（如硬盘及光盘驱动器）之间的数据传输)。<br>
-  固态硬盘(SSD)最大的好处是没有马达不需要转动。而是通过闪存直接读写的特性，因此除了没数据延迟且快速之外，还很省电。SSD的主流容量还是在128~256GB，而机械硬盘(HDD)容量已经达到2TB以上。一般固态硬盘(SSD)用作系统盘，机械硬盘（HDD）作为数据存储。<br>
-(5)网卡和主板
-  需要注意网卡、显卡插在主板上的位置。<br>
-(6)主机电源<br>
-  要选择稳定性高的电源。</p>
-<h2>二、主机规划与磁盘分区</h2>
-<p>  正常的物理机器大概使用的都是/dev/sd[a-p]的磁盘文件名。至于虚拟机环境中，为了加速，可能就会使用/dev/vd[a-p]这种设备文件名。<br>
-  (1)MBR<br>
-   MBR磁盘分区表用来处理启动引导程序和分区表。而启动引导程序记录区和分区表通通放在磁盘的第一个扇区。但是无法使用2.2TB以上的磁盘容量，MBR仅有一个区块，被破坏后经常无法或很难恢复。<br>
-  (2)GPT磁盘分区表<br>
-   可以支持更大的磁盘容量。</p>
-<h2>三、</h2>
-<p>locale:显示目前所支持的语系。LANG=en_US.utf8就可以修改输出语系了。<br>
-cal:显示日历   cal [month] [year] cal 10 2014<br>
-bc:计算器  进入bc后需要输入quit才能离开，需要显示小数位需要输入scale=（你想要的位数）<br>
-nano: nano text.txt 打开一个新的或旧的文件,nano是一个文本编辑器<br>
-who:查看系统谁在线
-netstat -a:查看网络的联机状态<br>
-shutdown:关机    shutdown  -h  [time]   [msg]:定时时候关机<br>
-sync;:数据同步写入磁盘<br>
-chgrp: 修改用户组   用法:chgrp  [-R]  groupName  file<br>
-chown: 修改文件拥有者   用法: chown  [-R]  账号名称 文件或目录<br>
-chmod:修改权限<br>
-/usr/bin: 存放用户可以使用的命令与/bin一样<br>
-/boot:放置系统启动文件<br>
-/etc:放置系统配置文件<br>
-/lib:放置系统的库文件<br>
-/sbin:系统启动过程所需要的，包括启动、修复、还原系统所需要的命令<br>
-/var/log:存放日志文件<br>
-pwd:显示当前目录   pwd -P:显示当前实际目录<br>
-mkdir: mkdir   [-mp] 目录名称<br>
--m:设置文件的权限   -p:递归创建目录4</p>
+        <h1 id="Linux学习笔记"><a href="#Linux学习笔记" class="headerlink" title="Linux学习笔记"></a>Linux学习笔记</h1><hr>
+<h2 id="一、硬件部分"><a href="#一、硬件部分" class="headerlink" title="一、硬件部分"></a>一、硬件部分</h2><p>(1)cpu<br>&emsp;&emsp; cpu内部含有指令集，不同的指令集会导致cpu工作效率的高低。cpu性能的比较还有cpu的频率(频率就是cpu每秒钟可以进行的工作次数)，所以频率高表示这块cpu单位时间内可以做更多的事情。另外，不同cpu型号大多具有不同的针脚，能够搭配的主板芯片组也不相同，所以将主机进行升级时，不能只考虑cpu,还需留意主板支持的型号。<br>(2)内存<br>&emsp;&emsp;内存需要注意带宽(频率×位宽)和频率的型号，还需要考虑容量。<br>(3)显卡<br>&emsp;&emsp;显卡又称为VGA，对于图形影像的显示扮演着相当关键的角色。一般对于图形影像的显示重点在于分辨率和颜色深度，因为每个图像显示的颜色会占用内存，因此显卡上面会有集成内存并被称为显存，这个显存容量将会影响到你的屏幕分辨率和颜色深度。<br>(4)硬盘<br>&emsp;&emsp;现在硬盘大多是SATA接口(SATA是Serial ATA的缩写，即串行ATA。它是一种电脑总线，主要功能是用作主板和大量存储设备（如硬盘及光盘驱动器）之间的数据传输)。<br>&emsp;&emsp;固态硬盘(SSD)最大的好处是没有马达不需要转动。而是通过闪存直接读写的特性，因此除了没数据延迟且快速之外，还很省电。SSD的主流容量还是在128~256GB，而机械硬盘(HDD)容量已经达到2TB以上。一般固态硬盘(SSD)用作系统盘，机械硬盘（HDD）作为数据存储。<br>(5)网卡和主板<br>&emsp;&emsp;需要注意网卡、显卡插在主板上的位置。<br>(6)主机电源<br>&emsp;&emsp;要选择稳定性高的电源。</p>
+<h2 id="二、主机规划与磁盘分区"><a href="#二、主机规划与磁盘分区" class="headerlink" title="二、主机规划与磁盘分区"></a>二、主机规划与磁盘分区</h2><p>&emsp;&emsp;正常的物理机器大概使用的都是/dev/sd[a-p]的磁盘文件名。至于虚拟机环境中，为了加速，可能就会使用/dev/vd[a-p]这种设备文件名。<br>&emsp;&emsp;(1)MBR<br>&emsp;&emsp;&emsp;MBR磁盘分区表用来处理启动引导程序和分区表。而启动引导程序记录区和分区表通通放在磁盘的第一个扇区。但是无法使用2.2TB以上的磁盘容量，MBR仅有一个区块，被破坏后经常无法或很难恢复。<br>&emsp;&emsp;(2)GPT磁盘分区表<br>&emsp;&emsp;&emsp;可以支持更大的磁盘容量。  </p>
+<h2 id="三、"><a href="#三、" class="headerlink" title="三、"></a>三、</h2><p>locale:显示目前所支持的语系。LANG=en_US.utf8就可以修改输出语系了。<br>cal:显示日历 &emsp; cal [month] [year] cal 10 2014<br>bc:计算器&emsp; 进入bc后需要输入quit才能离开，需要显示小数位需要输入scale=（你想要的位数）<br>nano: nano text.txt 打开一个新的或旧的文件,nano是一个文本编辑器<br>who:查看系统谁在线<br>netstat -a:查看网络的联机状态<br>shutdown:关机 &emsp;&emsp; shutdown&emsp; -h&emsp; [time] &emsp; [msg]:定时时候关机<br>sync;:数据同步写入磁盘<br>chgrp: 修改用户组 &emsp; 用法:chgrp &emsp;[-R]&emsp; groupName &emsp;file<br>chown: 修改文件拥有者 &emsp; 用法: chown&emsp; [-R] &emsp;账号名称&emsp;文件或目录<br>chmod:修改权限<br>/usr/bin: 存放用户可以使用的命令与/bin一样<br>/boot:放置系统启动文件<br>/etc:放置系统配置文件<br>/lib:放置系统的库文件<br>/sbin:系统启动过程所需要的，包括启动、修复、还原系统所需要的命令<br>/var/log:存放日志文件<br>pwd:显示当前目录 &emsp; pwd -P:显示当前实际目录<br>mkdir: mkdir &emsp; [-mp] 目录名称<br>-m:设置文件的权限&emsp;&emsp; -p:递归创建目录4</p>
 
       
     </div>
@@ -221,92 +174,26 @@ mkdir: mkdir   [-mp] 目录名称<br>
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <h2>一、标题</h2>
-<p>在#后面加个空格再写文字，一个#号是一级标题，两个是二级标题，以此类推，可以有六个标题。
-比如：<br>
-   # 一级标题<br>
-   ## 二级标题<br>
-显示效果：</p>
-<h1>一级标题</h1>
-<h2>二级标题</h2>
-<h2>二、字体与换行</h2>
-<p>(1)换行<br>
-  行尾加两个空格就可以换行了<br>
-(2)加粗<br>
-  左右两边用两个*包起来就可以了<br>
-例如：<br>
-    **这是要加粗的字体**<br>
-显示效果：<br>
-  <strong>这是要加粗的字体</strong><br>
-(3)空格<br>
-  &amp;加emsp;等于两个&amp;加nbsp;<br>
-(4)斜体<br>
-  需要倾斜的文字左右两边用一个*包起来<br>
-显示效果：<br>
-  <em>这是要倾斜的文字</em><br>
-(5)斜体加粗<br>
-  要斜体加粗的文字左右需要使用三个*包起来<br>
-显示效果：<br>
-  <strong><em>这是要斜体加粗的文字</em></strong></p>
-<h2>三、引用</h2>
-<p>在需要引用的文字前面加&gt;就可以了，引用可以多层嵌套，如加两个&gt;&gt;或三个&gt;&gt;&gt;<br>
-例如：<br>
-  &gt;第一层引用内容<br>
-  &gt;&gt;第二层引用内容<br>
-显示效果：</p>
+        <h2 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h2><p>在#后面加个空格再写文字，一个#号是一级标题，两个是二级标题，以此类推，可以有六个标题。<br>比如：<br>&emsp;&emsp; # 一级标题<br>&emsp;&emsp; ## 二级标题<br>显示效果：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h2 id="二、字体与换行"><a href="#二、字体与换行" class="headerlink" title="二、字体与换行"></a>二、字体与换行</h2><p>(1)换行<br>&emsp;&emsp;行尾加两个空格就可以换行了<br>(2)加粗<br>&emsp;&emsp;左右两边用两个*包起来就可以了<br>例如：<br>&emsp;&emsp;  **这是要加粗的字体**<br>显示效果：<br>&emsp;&emsp;<strong>这是要加粗的字体</strong><br>(3)空格<br> &emsp;&emsp;&amp;加emsp;等于两个&amp;加nbsp;<br>(4)斜体<br>&emsp;&emsp;需要倾斜的文字左右两边用一个*包起来<br>显示效果：<br>&emsp;&emsp;<em>这是要倾斜的文字</em><br>(5)斜体加粗<br>&emsp;&emsp;要斜体加粗的文字左右需要使用三个*包起来<br>显示效果：<br>&emsp;&emsp;<strong><em>这是要斜体加粗的文字</em></strong></p>
+<h2 id="三、引用"><a href="#三、引用" class="headerlink" title="三、引用"></a>三、引用</h2><p>在需要引用的文字前面加>就可以了，引用可以多层嵌套，如加两个>&gt;或三个>&gt;&gt;<br>例如：<br>&emsp;&emsp;>第一层引用内容<br>&emsp;&emsp;>&gt;第二层引用内容<br>显示效果：  </p>
 <blockquote>
-<p>第一层引用内容</p>
+<p>第一层引用内容  </p>
 <blockquote>
-<p>第二层引用内容</p>
+<p>第二层引用内容  </p>
 </blockquote>
 </blockquote>
-<h2>四、分割线</h2>
-<p>三个或三个以上的*</p>
-<h2>五、超链接</h2>
-<p>[链接名]（超链接地址“超链接描述”）<br>
-例如：<br>
-  [曹某某博客](http://dragons-c.top/)<br>
-显示效果：<br>
-   <a href="http://dragons-c.top/">曹某某博客</a></p>
-<h2>六、代码</h2>
-<p>(1)单行代码<br>
-  单行代码之间使用反引号包起来就可以了<br>
-例如：<br>
-  `System.out.println(&quot;zzzz&quot;);`<br>
-显示效果:<br>
-   <code>System.out.println(&quot;zzzz&quot;);</code><br>
-(2)多行代码<br>
-  代码使用三个反引号包起来且两边的反引号都单独占一行<br>
-例如：<br>
-  ```<br>
-  while(true)<br>
-  {<br>
-     System.out.println(&quot;Hello World&quot;);<br>
-  }<br>
-  ```<br>
-显示效果：</p>
+<h2 id="四、分割线"><a href="#四、分割线" class="headerlink" title="四、分割线"></a>四、分割线</h2><p>三个或三个以上的*</p>
+<h2 id="五、超链接"><a href="#五、超链接" class="headerlink" title="五、超链接"></a>五、超链接</h2><p>[链接名]（超链接地址“超链接描述”）<br>例如：<br>&emsp;&emsp;[曹某某博客](<a href="http://dragons-c.top/">http://dragons-c.top/</a>)<br>显示效果：<br>&emsp;&emsp; <a href="http://dragons-c.top/">曹某某博客</a></p>
+<h2 id="六、代码"><a href="#六、代码" class="headerlink" title="六、代码"></a>六、代码</h2><p>(1)单行代码<br>&emsp;&emsp;单行代码之间使用反引号包起来就可以了<br>例如：<br>&emsp;&emsp;`System.out.println(“zzzz”);`<br>显示效果:<br>&emsp;&emsp; <code>System.out.println(&quot;zzzz&quot;);</code><br>(2)多行代码<br>&emsp;&emsp;代码使用三个反引号包起来且两边的反引号都单独占一行<br>例如：<br>&emsp;&emsp;```<br>&emsp;&emsp;while(true)<br>&emsp;&emsp;{<br>   &emsp;&emsp;&emsp;&emsp; System.out.println(“Hello World”);<br>&emsp;&emsp;}<br>&emsp;&emsp;```<br>显示效果：  </p>
 <pre><code>while(true)      
 {  
     System.out.println(&quot;Hello World&quot;);  
 }  
-</code></pre>
-<h2>七、列表</h2>
-<p>(1)无序列表<br>
-  *加空格<br>
-示例：<br>
-  * 列表内容1<br>
-  * 列表内容2<br>
-  * 列表内容3<br>
-(2)列表嵌套<br>
-  在上一级和下一级之间敲三个空格即可<br>
-示例：</p>
+</code></pre><h2 id="七、列表"><a href="#七、列表" class="headerlink" title="七、列表"></a>七、列表</h2><p>(1)无序列表<br>&emsp;&emsp;*加空格<br>示例：<br>&emsp;&emsp;<em> 列表内容1<br>&emsp;&emsp;</em> 列表内容2<br>&emsp;&emsp;* 列表内容3<br>(2)列表嵌套<br>&emsp;&emsp;在上一级和下一级之间敲三个空格即可<br>示例：  </p>
 <ol>
-<li>有序列表1<br>
- * 无序列表1<br>
- * 无序列表2</li>
-<li>有序列表2<br>
- * 无序列表1<br>
- * 无序列表2</li>
+<li>有序列表1<br>&emsp;<em> 无序列表1<br>&emsp;</em> 无序列表2   </li>
+<li>有序列表2<br>&emsp;<em> 无序列表1<br>&emsp;</em> 无序列表2</li>
 </ol>
 
       
@@ -434,7 +321,7 @@ mkdir: mkdir   [-mp] 目录名称<br>
       </div>
       <footer id="footer">
   <div class="foot-box global-width">
-    &copy; 2019 曹 &nbsp;&nbsp;
+    &copy; 2020 曹 &nbsp;&nbsp;
    
     <br>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
