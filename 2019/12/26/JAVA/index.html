@@ -10,17 +10,17 @@
   
   
   
-  <meta name="description" content="Spring 一、IOC（控制反转）   控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。   正控：若要使用这个对象，需要自己去负责创建。   反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。   代码：pom依赖: &amp;lt;dependency&amp;gt;">
+  <meta name="description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。&amp;emsp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JAVA框架">
 <meta property="og:url" content="http://dragons-c.top/2019/12/26/JAVA/index.html">
 <meta property="og:site_name" content="又是不想努力的一天">
-<meta property="og:description" content="Spring 一、IOC（控制反转）   控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。   正控：若要使用这个对象，需要自己去负责创建。   反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。   代码：pom依赖: &amp;lt;dependency&amp;gt;">
+<meta property="og:description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。&amp;emsp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-15T09:38:21.004Z">
+<meta property="og:updated_time" content="2020-01-15T09:57:02.472Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA框架">
-<meta name="twitter:description" content="Spring 一、IOC（控制反转）   控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。   正控：若要使用这个对象，需要自己去负责创建。   反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。   代码：pom依赖: &amp;lt;dependency&amp;gt;">
+<meta name="twitter:description" content="Spring一、IOC（控制反转）&amp;emsp;&amp;emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。&amp;emsp;&amp;emsp;正控：若要使用这个对象，需要自己去负责创建。&amp;emsp;&amp;emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。&amp;emsp;">
   
     <link rel="alternate" href="/dragons-c.github.io/atom.xml" title="又是不想努力的一天" type="application/atom+xml">
   
@@ -86,51 +86,23 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <h1><em>Spring</em></h1>
-<h2>一、IOC（控制反转）</h2>
-<p>  控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。<br>
-  正控：若要使用这个对象，需要自己去负责创建。<br>
-  反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。<br>
-  代码：pom依赖:</p>
+        <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a><em>Spring</em></h1><h2 id="一、IOC（控制反转）"><a href="#一、IOC（控制反转）" class="headerlink" title="一、IOC（控制反转）"></a>一、IOC（控制反转）</h2><p>&emsp;&emsp;控制反转是一种设计思想，就是将原本在程序中需要手动创建对象的控制权，交由Spring框架来处理。<br>&emsp;&emsp;正控：若要使用这个对象，需要自己去负责创建。<br>&emsp;&emsp;反控：若要使用这个对象，只需要从Spring容器中获取需要使用的对象，不关心对象的创建过程，也就是把创建对象的控制权反转给了Spring框架。<br>&emsp;&emsp;代码：pom依赖:   </p>
 <pre><code>&lt;dependency&gt;  
   &lt;groupId&gt;org.springframework&lt;/groupId&gt;  
   &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;  
   &lt;version&gt;5.2.0.RELEASE&lt;/version&gt;  
 &lt;/dependency&gt;
-</code></pre>
-<p>  aplicationContext:</p>
-<pre><code>    &lt;context:component-scan base-package=&quot;com.pojo&quot;/&gt;//包扫描    
-</code></pre>
-<p>  <strong>@Service</strong>：表示声明该类为一个bean，只有注册为bean后，才可以在其它类下使用@Autowired将本类作为成员变量注入。<br>
-  <strong>@Autowired</strong>：顾名思义，就是自动装配，其作用是为了消除代码Java代码里面的getter/setter与bean属性中的property。当Spring发现@Autowired注解时，将自动在代码上下文中找到和其匹配（默认是类型匹配）的Bean，并自动注入到相应的地方去。@Qualifier注解括号里面的应当是接口实现类的类名。<br>
-   <strong>@Resource的装配顺序：</strong><br>
-  1、@Resource后面没有任何内容，默认通过name属性去匹配bean，找不到再按type去匹配。<br>
-  2、指定了name或者type则根据指定的类型去匹配bean。<br>
-  3、指定了name和type则根据指定的name和type去匹配bean，任何一个不匹配都将报错。<br>
-然后，区分一下@Autowired和@Resource两个注解的区别：<br>
-  1、@Autowired默认按照byType方式进行bean匹配，@Resource默认按照byName方式进行bean匹配。<br>
-  2、@Autowired是Spring的注解，@Resource是J2EE的注解，这个看一下导入注解的时候这两个注解的包名就一清二楚了。<br>
-  Spring属于第三方的，J2EE是Java自己的东西，因此，建议使用@Resource注解，以减少代码和Spring之间的耦合。<br>
-   **&lt;context:annotation-config&gt;**是用于激活那些已经在spring容器里注册过的bean上面的注解，也就是显示的向Spring注册。比如我们要使用@Autowired注解，那么就必须事先在 Spring 容器中声明，一般来说，像@ Resource 、@ PostConstruct、@Antowired这些注解在自动注入还是比较常用，所以如果总是需要按照传统的方式一条一条配置显得有些繁琐和没有必要，于是spring给我们提供&lt;context:annotation-config/&gt;的简化配置方式，自动帮你完成声明。<br>
-     假如我们要使用如@Component、@Controller、@Service等这些注解，使用能否激活这些注解呢?<br>
-   答案：单纯使用&lt; context:annotation-config/&gt;对上面这些注解无效，不能激活！<br>
-  Spring 给我提供了 <strong>context:component-scan</strong> 配置，如下<br>
-<code>&lt;context:component-scan base-package=&quot;xx.xx&quot;/&gt;</code><br>
-  该配置项其实也包含了自动注入上述 四个processor 的功能，因此当使用 &lt; context:component-scan/&gt; 后，就可以将 &lt; context:annotation-config/&gt; 移除了。<br>
-  （1）&lt; context:annotation-config /&gt;：仅能够在已经在已经注册过的bean上面起作用。对于没有在spring容器中注册的bean，它并不能执行任何操作。<br>
-  （2）&lt; context:component-scan base-package=&quot;XX.XX&quot;/&gt; ：除了具有上面的功能之外，还具有自动将带有@component,@service,@Repository等注解的对象注册到spring容器中的功能。</p>
-<h2>二、AOP（面向切面）</h2>
-<pre><code>
-        &lt;aop:pointcut id=&quot;loggerCutpoint&quot;
-            expression=
-            &quot;execution(* com.pojo.ProductService.*(..)) &quot;/&gt;             
-        &lt;aop:aspect id=&quot;logAspect&quot; ref=&quot;loggerAspect&quot;&gt;
-            &lt;aop:after pointcut-ref=&quot;loggerCutpoint&quot; method=&quot;log&quot;/&gt;
-        &lt;/aop:aspect&gt;  
-</code></pre>
-<p>   <code>&lt;aop:pointcut id=&quot;loggerCutpoint&quot; expression=&quot;execution(*com.pojo.ProductService.*(..)) &quot;/&gt;</code>这一句是声明切入点，切入点的 id 叫 loggerCutPoint ，用来标记这个切入点，这个expression表示：满足expression中的方法调用之后，就会去进行切面操作，类似于触发了切面：<br>
-   第一个 * 代表返回任意类型com.how2java.service.ProductService.*  表示包名以 com.how2java.service.ProductService 开头的类的任意方法（第二个*表示任意方法，通配符肯定知道吧）(..) 表示方法的参数是任意数量和类型.<br>
-   简单说就是，只要com.how2java.service这个包中的ProductService类的任意一个函数被调用，不管你的返回值是什么，都会触发开关，我就会去执行切面，也就是辅助功能，但是辅助功能是什么呢，就是下面两句：</p>
+</code></pre><p>&emsp;&emsp;aplicationContext:      </p>
+<pre><code>&lt;context:component-scan base-package=&quot;com.pojo&quot;/&gt;//包扫描    
+</code></pre><p>&emsp;&emsp;<strong>@Service</strong>：表示声明该类为一个bean，只有注册为bean后，才可以在其它类下使用@Autowired将本类作为成员变量注入。<br>&emsp;&emsp;<strong>@Autowired</strong>：顾名思义，就是自动装配，其作用是为了消除代码Java代码里面的getter/setter与bean属性中的property。当Spring发现@Autowired注解时，将自动在代码上下文中找到和其匹配（默认是类型匹配）的Bean，并自动注入到相应的地方去。@Qualifier注解括号里面的应当是接口实现类的类名。<br>&emsp;&emsp; <strong>@Resource的装配顺序：</strong><br>&emsp;&emsp;1、@Resource后面没有任何内容，默认通过name属性去匹配bean，找不到再按type去匹配。<br>&emsp;&emsp;2、指定了name或者type则根据指定的类型去匹配bean。<br>&emsp;&emsp;3、指定了name和type则根据指定的name和type去匹配bean，任何一个不匹配都将报错。<br>然后，区分一下@Autowired和@Resource两个注解的区别：<br>&emsp;&emsp;1、@Autowired默认按照byType方式进行bean匹配，@Resource默认按照byName方式进行bean匹配。<br>&emsp;&emsp;2、@Autowired是Spring的注解，@Resource是J2EE的注解，这个看一下导入注解的时候这两个注解的包名就一清二楚了。<br>&emsp;&emsp;Spring属于第三方的，J2EE是Java自己的东西，因此，建议使用@Resource注解，以减少代码和Spring之间的耦合。<br>&emsp;&emsp; <strong><a href="context:annotation-config" target="_blank" rel="noopener">context:annotation-config</a></strong>是用于激活那些已经在spring容器里注册过的bean上面的注解，也就是显示的向Spring注册。比如我们要使用@Autowired注解，那么就必须事先在 Spring 容器中声明，一般来说，像@ Resource 、@ PostConstruct、@Antowired这些注解在自动注入还是比较常用，所以如果总是需要按照传统的方式一条一条配置显得有些繁琐和没有必要，于是spring给我们提供<a href="context:annotation-config/" target="_blank" rel="noopener">context:annotation-config/</a>的简化配置方式，自动帮你完成声明。<br>&emsp;&emsp;   假如我们要使用如@Component、@Controller、@Service等这些注解，使用能否激活这些注解呢?<br> &emsp;&emsp; 答案：单纯使用&lt; context:annotation-config/&gt;对上面这些注解无效，不能激活！<br>&emsp;&emsp;Spring 给我提供了 <strong>context:component-scan</strong> 配置，如下<br> <code>&lt;context:component-scan base-package=&quot;xx.xx&quot;/&gt;</code><br>&emsp;&emsp;该配置项其实也包含了自动注入上述 四个processor 的功能，因此当使用 &lt; context:component-scan/&gt; 后，就可以将 &lt; context:annotation-config/&gt; 移除了。<br>&emsp;&emsp;（1）&lt; context:annotation-config /&gt;：仅能够在已经在已经注册过的bean上面起作用。对于没有在spring容器中注册的bean，它并不能执行任何操作。<br>&emsp;&emsp;（2）&lt; context:component-scan base-package=”XX.XX”/&gt; ：除了具有上面的功能之外，还具有自动将带有@component,@service,@Repository等注解的对象注册到spring容器中的功能。 </p>
+<h2 id="二、AOP（面向切面）"><a href="#二、AOP（面向切面）" class="headerlink" title="二、AOP（面向切面）"></a>二、AOP（面向切面）</h2><pre><code>
+&lt;aop:pointcut id=&quot;loggerCutpoint&quot;
+    expression=
+    &quot;execution(* com.pojo.ProductService.*(..)) &quot;/&gt;             
+&lt;aop:aspect id=&quot;logAspect&quot; ref=&quot;loggerAspect&quot;&gt;
+    &lt;aop:after pointcut-ref=&quot;loggerCutpoint&quot; method=&quot;log&quot;/&gt;
+&lt;/aop:aspect&gt;  
+</code></pre><p>&emsp;&emsp; <code>&lt;aop:pointcut id=&quot;loggerCutpoint&quot; expression=&quot;execution(*com.pojo.ProductService.*(..)) &quot;/&gt;</code>这一句是声明切入点，切入点的 id 叫 loggerCutPoint ，用来标记这个切入点，这个expression表示：满足expression中的方法调用之后，就会去进行切面操作，类似于触发了切面：<br>&emsp;&emsp; 第一个 <em> 代表返回任意类型com.how2java.service.ProductService.</em>  表示包名以 com.how2java.service.ProductService 开头的类的任意方法（第二个*表示任意方法，通配符肯定知道吧）(..) 表示方法的参数是任意数量和类型.<br>&emsp;&emsp; 简单说就是，只要com.how2java.service这个包中的ProductService类的任意一个函数被调用，不管你的返回值是什么，都会触发开关，我就会去执行切面，也就是辅助功能，但是辅助功能是什么呢，就是下面两句：  </p>
 <pre><code>
 
  &lt;aop:aspect id=&quot;logAspect&quot; ref=&quot;loggerAspect&quot;&gt;  
@@ -139,48 +111,41 @@
 
 &lt;/aop:aspect&gt;  
 
-</code></pre>
-<p>   这两句是定义了一个切面，上面说只要触发开关，就会去执行切面，就是指的这里的切面，所谓切面，就是一个类中的方法而已.<br>
-   id代表这个切面的名字，ref就是指的方法所在的类，method代表的就是方法的名字，
-pointcut-ref=&quot;loggerCutpoint&quot; 这个就是表示我这个切面是和上面的切点关联起来的（一个切点是可以关联多个切面的，一个切面只能关联一个方法），只要上面的切点被触发，我就会到这里来执行一些辅助功能，搞得和单片机的中断一样，after表示在切入点触发之后来执行我这个中断，当然也有before，一共有五个before，after，After-returning ，After-throwing，Around。
-在 method 参数后面，还可以加上参数列表。<br>
-  网站的功能分为核心功能和辅助功能，辅助功能叫做切面<br>
-  AOP的过程分为两步：1，在业务类中插入切入点，2，将切入点和切面类关联起来<br>
-业务类就是核心类，就是网站的主要功能，切面就是辅助功能，日志，统计之类的<br>
-通过配置，可以实现，在某个方法调用的时候，触发别的方法执行，就好像在监视目标方法，你被执行，就触发我执行。<br>
-  AOP术语<br>
-  1，通知：<br>
-  通知定义了切面要完成的工作内容和何时完成工作，就是什么时候去做辅助功能，功能具体是什么代码<br>
-  五种类型:<br>
-  1. Before——在方法调用之前调用通知<br>
-  2. After——在方法完成之后调用通知，无论方法执行成功与否<br>
-  3. After-returning——在方法执行成功之后调用通知<br>
-  4. After-throwing——在方法抛出异常后进行通知<br>
-  5. Around——通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为<br>
-  前四个好理解的，最后一个around 表示切面在被监视的函数运行前后都会执行.<br>
-下面是切面要执行的函数 log，log函数有一个形参 joinPoint 这个可以理解为断点，中间一句代表的就是被监视的程序运行，在被监视的程序运行时，可以替换他的形参，这个是 around 厉害的地方，如果被监视的程序，运行的时候输入的是一个haha字符串作为实参，但是经过log方法之后，这个参数就被替换为abc了.<br>
-<code>public Object log(ProceedingJoinPoint joinPoint) throws Throwable { System.out.println(&quot;我在被监视程序之前。。。&quot;); Object object = joinPoint.proceed(new Object[]{&quot;abc&quot;}); System.out.println(&quot;我在被监视程序之后。。。&quot; ); return object; }</code><br>
-  2，连接点：<br>
-  在执行正常的功能时，能够插入切面的点。可以作为切入点的点。备选点。<br>
-  连接点可以是调用方法时、抛出异常时、甚至修改字段时，在这些点，就可以去执行切面。<br>
-  3，切面：<br>
-  定义：切面是通知和切点的集合，通知和切点共同定义了切面的全部功能——它是什么，在何时何处完成其功能。<br>
-  声明切面：<br>
-  在Spring中，切面就是一个包含通知和切点的对象，是一个Bean，Bean的字段和方法就是该切面的状态和行为，还要通过配置，来指定切入点和通知实现<br>
-  在xml中，切面使用&lt;aop:aspect&gt;标签指定，ref属性用来引用切面支持Bean。这个bean里面就是用来执行要做的辅助功能的。<br>
-  4，切点：<br>
-  定义：如果通知定义了“什么”和“何时”。那么切点就定义了“何处”。切点会匹配通知所要织入的一个或者多个连接点。通常使用明确的类或者方法来指定这些切点。<br>
-  作用：定义通知被应用的位置（在哪些连接点）<br>
-  切入点的声明：<br>
-  切入点在Spring也是一个Bean。<br>
-  切点的声明有三种定义方式：<br>
-  1）在&lt;aop:config&gt;标签下使用&lt;aop:pointcut&gt;声明一个切入点Bean，该切入点可以被多个切面使用，对于需要共享使用的切入点最好使用该方式，该切入点使用id属性指定Bean名字，在通知定义时使用pointcut-ref属性通过该id引用切入点，expression属性指定切入点表达式<br>
-&lt;aop:config&gt;<br>
-　　&lt;aop:pointcut id=&quot;pointcut&quot; expression=&quot;execution(* cn.javass..<em>.</em>(..))&quot;/&gt;<br>
-　　&lt;aop:aspect ref=&quot;aspectSupportBean&quot;&gt;<br>
-　　&lt;aop:before pointcut-ref=&quot;pointcut&quot; method=&quot;before&quot;/&gt;<br>
-　　　&lt;/aop:aspect&gt;<br>
-&lt;/aop:config&gt;</p>
+</code></pre><p>&emsp;&emsp; 这两句是定义了一个切面，上面说只要触发开关，就会去执行切面，就是指的这里的切面，所谓切面，就是一个类中的方法而已.<br>&emsp;&emsp; id代表这个切面的名字，ref就是指的方法所在的类，method代表的就是方法的名字，<br>pointcut-ref=”loggerCutpoint” 这个就是表示我这个切面是和上面的切点关联起来的（一个切点是可以关联多个切面的，一个切面只能关联一个方法），只要上面的切点被触发，我就会到这里来执行一些辅助功能，搞得和单片机的中断一样，after表示在切入点触发之后来执行我这个中断，当然也有before，一共有五个before，after，After-returning ，After-throwing，Around。<br>在 method 参数后面，还可以加上参数列表。<br>&emsp;&emsp;网站的功能分为核心功能和辅助功能，辅助功能叫做切面<br>&emsp;&emsp;AOP的过程分为两步：1，在业务类中插入切入点，2，将切入点和切面类关联起来<br>业务类就是核心类，就是网站的主要功能，切面就是辅助功能，日志，统计之类的<br>通过配置，可以实现，在某个方法调用的时候，触发别的方法执行，就好像在监视目标方法，你被执行，就触发我执行。<br>&emsp;&emsp;AOP术语<br>&emsp;&emsp;1，通知：<br>&emsp;&emsp;通知定义了切面要完成的工作内容和何时完成工作，就是什么时候去做辅助功能，功能具体是什么代码<br>&emsp;&emsp;五种类型:<br>&emsp;&emsp;1. Before——在方法调用之前调用通知<br>&emsp;&emsp;2. After——在方法完成之后调用通知，无论方法执行成功与否<br>&emsp;&emsp;3. After-returning——在方法执行成功之后调用通知<br>&emsp;&emsp;4. After-throwing——在方法抛出异常后进行通知<br>&emsp;&emsp;5. Around——通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为<br> &emsp;&emsp;前四个好理解的，最后一个around 表示切面在被监视的函数运行前后都会执行.<br>下面是切面要执行的函数 log，log函数有一个形参 joinPoint 这个可以理解为断点，中间一句代表的就是被监视的程序运行，在被监视的程序运行时，可以替换他的形参，这个是 around 厉害的地方，如果被监视的程序，运行的时候输入的是一个haha字符串作为实参，但是经过log方法之后，这个参数就被替换为abc了.  </p>
+<pre><code>
+public Object log(MethodInvocationProceedingJoinPoint joinPoint) throws Throwable {
+    System.out.println(&quot;监视程序之前。。。&quot;);
+    Object object = joinPoint.proceed(new Object[]{&quot;abc&quot;});
+    System.out.println(&quot;监视程序之前。。。&quot;);
+    return object;
+}  
+
+</code></pre><p>&emsp;&emsp;2，连接点：<br>&emsp;&emsp;在执行正常的功能时，能够插入切面的点。可以作为切入点的点。备选点。<br>&emsp;&emsp;连接点可以是调用方法时、抛出异常时、甚至修改字段时，在这些点，就可以去执行切面。<br>&emsp;&emsp;3，切面：<br>&emsp;&emsp;定义：切面是通知和切点的集合，通知和切点共同定义了切面的全部功能——它是什么，在何时何处完成其功能。<br>&emsp;&emsp;声明切面：<br>&emsp;&emsp;在Spring中，切面就是一个包含通知和切点的对象，是一个Bean，Bean的字段和方法就是该切面的状态和行为，还要通过配置，来指定切入点和通知实现<br>&emsp;&emsp;在xml中，切面使用<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签指定，ref属性用来引用切面支持Bean。这个bean里面就是用来执行要做的辅助功能的。<br>&emsp;&emsp;4，切点：<br>&emsp;&emsp;定义：如果通知定义了“什么”和“何时”。那么切点就定义了“何处”。切点会匹配通知所要织入的一个或者多个连接点。通常使用明确的类或者方法来指定这些切点。<br>&emsp;&emsp;作用：定义通知被应用的位置（在哪些连接点）<br>&emsp;&emsp;切入点的声明：<br>&emsp;&emsp;切入点在Spring也是一个Bean。<br>&emsp;&emsp;切点的声明有三种定义方式：<br>&emsp;&emsp;1）在<a href="aop:config" target="_blank" rel="noopener">aop:config</a>标签下使用<a href="aop:pointcut" target="_blank" rel="noopener">aop:pointcut</a>声明一个切入点Bean，该切入点可以被多个切面使用，对于需要共享使用的切入点最好使用该方式，该切入点使用id属性指定Bean名字，在通知定义时使用pointcut-ref属性通过该id引用切入点，expression属性指定切入点表达式    </p>
+<pre><code>
+&lt;aop:config&gt;  
+ 　　&lt;aop:pointcut id=&quot;pointcut&quot; expression=&quot;execution(* cn.javass..*.*(..))&quot;/&gt;  
+ 　　&lt;aop:aspect ref=&quot;aspectSupportBean&quot;&gt;  
+　　&lt;aop:before pointcut-ref=&quot;pointcut&quot; method=&quot;before&quot;/&gt;  
+　　　&lt;/aop:aspect&gt;  
+&lt;/aop:config&gt;    
+</code></pre><p>&emsp;&emsp;2）在<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签下使用<a href="aop:pointcut" target="_blank" rel="noopener">aop:pointcut</a>声明一个切入点Bean，该切入点可以被多个切面使用，但一般该切入点只被该切面使用，当然也可以被其他切面使用，但最好不要那样使用，该切入点使用id属性指定Bean名字，在通知定义时使用pointcut-ref属性通过该id引用切入点，expression属性指定切入点表达式：  </p>
+<pre><code>
+&lt;aop:config&gt;  
+ &lt;aop:aspect ref=&quot;aspectSupportBean&quot;&gt;  
+    &lt;aop:pointcut id=&quot; pointcut&quot; expression=&quot;execution(* cn.javass..*.*(..))&quot;/&gt;  
+    &lt;aop:before pointcut-ref=&quot;pointcut&quot; method=&quot;before&quot;/&gt;  
+ &lt;/aop:aspect&gt;  
+&lt;/aop:config&gt;      
+
+</code></pre><p>&emsp;&emsp;3）匿名切入点Bean，可以在声明通知时通过pointcut属性指定切入点表达式，该切入点是匿名切入点，只被该通知使用：    </p>
+<pre><code>
+&lt;aop:config&gt;  
+ &lt;aop:aspect ref=&quot;aspectSupportBean&quot;&gt;  
+     &lt;aop:after pointcut=&quot;execution(* cn.javass..*.*(..))&quot; method=&quot;afterFinallyAdvice&quot;/&gt;  
+ &lt;/aop:aspect&gt;  
+&lt;/aop:config&gt;    
+
+</code></pre><p>&emsp;&emsp;5，引入：<br>&emsp;&emsp;引入允许我们向现有的类中添加方法或属性<br>&emsp;&emsp;6，织入：<br>&emsp;&emsp;织入是将切面应用到目标对象来创建的代理对象过程。   切面在指定的连接点被织入到目标对象中，在目标对象的生命周期中有多个点可以织入<br>&emsp;&emsp;编译期——切面在目标类编译时期被织入，这种方式需要特殊编译器。AspectJ的织入编译器就是以这种方式织入切面。<br>类加载期——切面在类加载到<br>JVM ，这种方式需要特殊的类加载器，他可以在目标类被引入应用之前增强该目标类的字节码。AspectJ5 的 LTW 就支持这种织入方式<br>&emsp;&emsp;运行期——切面在应用运行期间的某个时刻被织入。一般情况下，在织入切面时候，AOP 容器会为目标对象动态的创建代理对象。Spring AOP 就是以这种方式织入切面。</p>
 
       
     </div>
